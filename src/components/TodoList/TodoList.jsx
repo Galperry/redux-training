@@ -1,16 +1,25 @@
-import React from 'react'
+import React,{useState} from 'react'
 
-const TodoList = ({todos, onDeleteTodo}) => {
+const TodoList = ({todos, onDeleteTodo, onMarkDone}) => {
+    // const [Line, setLine] = useState(false)
     return (
     <div className="todo-list">
         {todos && todos.length > 0 ? (
-            todos.map((todo) => (
-            <div className="todo-item" key={todo.id}>
+            todos.map((todo) => ( 
+            <div style={todo.line ? {textDecoration: "line-through"}:{}} className="todo-item" key={todo.id}>
                 <div className="row">
-                <div className="col-xs-10">
-                    <h4>{todo.title}</h4>
+                {/* {console.log(todo.line)} */}
+                <div className="col-xs-8">
+                    <h4 style={todo.line ? {textDecoration: "line-through"}:{}}>{todo.title}</h4>
                 </div>
                 <div className="col-xs-2">
+                    <button
+                    className="btn btn-success"
+                    onClick={() => onMarkDone(todo.id)}
+                    // onClick={()=>setLine(!Line)}
+                    >
+                    Mark as Done
+                    </button>
                     <button
                     className="btn btn-danger"
                     onClick={() => onDeleteTodo(todo.id)}

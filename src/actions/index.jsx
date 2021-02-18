@@ -1,4 +1,4 @@
-import { ADD_TODO, DELETE_TODO } from '../constants/action-types'
+import { ADD_TODO, DELETE_TODO, MARK_DONE } from '../constants/action-types'
 
 
 export const addTodo = (data) => ({
@@ -9,5 +9,10 @@ export const addTodo = (data) => ({
 
 export const deleteTodo = (data) => ({
     type: DELETE_TODO,
+    payload: data
+})
+
+export const markDone = (data) => ({
+    type: MARK_DONE,
     payload: data
 })

@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { addTodo, deleteTodo} from "../actions"
+import { addTodo, deleteTodo, markDone} from "../actions"
 import { connect } from 'react-redux';
 import Header from './Header/Header';
 import TodoList from './TodoList/TodoList';
@@ -21,6 +21,10 @@ class App extends React.Component {
     this.props.deleteTodo(id);
   };
 
+  onMarkDone = (id) => {
+    this.props.markDone(id)
+  }
+
 
   render(){
      const { todos } = this.props;
@@ -35,6 +39,7 @@ class App extends React.Component {
                 <TodoList
                   todos={todos}
                   onDeleteTodo={(id) => this.onDeleteTodo(id)}
+                  onMarkDone={(id) => this.onMarkDone(id)}
                 />
               </div>
               <div className="col-xs-4">
@@ -60,4 +65,4 @@ const mapStateToProps = (state) => {
 };
 
 
-export default connect(mapStateToProps, {addTodo, deleteTodo})(App);
+export default connect(mapStateToProps, {addTodo, deleteTodo, markDone})(App);
